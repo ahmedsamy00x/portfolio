@@ -1,13 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Roboto, Lora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import AppNavigation from "@/components/AppNavigation";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import ResponsiveMenuDock from "@/components/ResponsiveMenuDock";
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700"],
+});
+
+const lora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -28,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${roboto.variable} ${lora.variable} ${geistSans.variable} ${geistMono.variable}   antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -36,16 +50,18 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="grid grid-cols-[30rem_1fr] min-h-screen bg-background text-foreground">
-            <div className="mt-20 ml-20">
-              <AppNavigation />
-            </div>
+          <main className=" min-h-screen bg-background text-foreground">
+            {/* Large screen navigation */}
+
+            <AppNavigation />
 
             <div className="fixed top-4 right-4 z-50">
               <ModeToggle />
             </div>
 
-            {children}
+            {/* Small screen navigation */}
+            <ResponsiveMenuDock />
+            <div className="max-w-3xl mx-auto">{children}</div>
           </main>
         </ThemeProvider>
       </body>

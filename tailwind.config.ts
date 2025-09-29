@@ -86,6 +86,8 @@ const config: Config = {
       fontFamily: {
         sans: "var(--font-sans)",
         mono: "var(--font-mono)",
+        roboto: "var(--font-roboto)",
+        lora: "var(--font-lora)",
       },
       animation: {
         "fade-in": "fade-in 0.5s ease-in-out",

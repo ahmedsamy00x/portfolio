@@ -77,7 +77,7 @@ const AppNavigation = () => {
   };
 
   return (
-    <div className="w-32 h-32 rounded-full border border-border flex items-center justify-center relative">
+    <div className="hidden lg:flex w-32 h-32 rounded-full border border-border items-center justify-center sticky top-10 left-10">
       {/* Center Navigation Icon */}
       <motion.div
         animate={{
