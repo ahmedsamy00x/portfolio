@@ -19,9 +19,9 @@ const links = [
     href: "/projects",
     icon: FolderOpen,
     label: "Projects",
-    position: "bottom",
+    position: "left",
   },
-  { href: "/contact", icon: Mail, label: "Contact", position: "left" },
+  // { href: "/contact", icon: Mail, label: "Contact", position: "left" },
 ];
 
 // Rotation angles for center navigation icon based on link position
