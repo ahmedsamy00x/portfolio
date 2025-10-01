@@ -35,22 +35,55 @@ const education = [
 
 const projects = [
   {
-    title: "Project One",
+    title: "Threat Intelligence Platform",
     description:
-      "A modern web application built with React and Next.js featuring real-time updates and responsive design.",
-    technologies: ["React", "Next.js", "TypeScript"],
-    image: "/darkatlas.webp",
-    previewLink: "https://example.com",
-    repoLink: "https://github.com/example/repo",
+      "A security-focused web application that aggregates and analyzes threat intelligence data from multiple sources, providing real-time alerts and insights to help organizations stay ahead of potential cyber threats.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Ant Design",
+      "Recharts",
+      "ChartJS",
+      "Formik",
+      "Yup",
+      "React Query",
+    ],
+    image: "/threat-intel.png",
+    previewLink: "https://threat.darkatlas.io",
+    repoLink: "",
   },
   {
-    title: "Dark Atlas",
+    title: "DarkAtlas Landing Page",
     description:
-      "A modern web application built with React and Next.js featuring real-time updates and responsive design.",
-    technologies: ["React", "Next.js", "TypeScript"],
-    image: "/da.PNG",
-    previewLink: "https://example.com",
-    repoLink: "https://github.com/example/repo",
+      "A landing page for DarkAtlas, showcasing its features and benefits with a sleek, modern design and responsive layout.",
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "GraphQL",
+    ],
+    image: "/da-landing.png",
+    previewLink: "https://darkatlas.io",
+    repoLink: "",
+  },
+  {
+    title: "Spendless",
+    description:
+      "An app to track recurring expenses and subscriptions, helping users manage their finances effectively by providing insights and reminders for upcoming payments.",
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Supabase",
+    ],
+    image: "/spendless-landing.png",
+    previewLink: "https://spendless-landing.netlify.app",
+    repoLink: "https://github.com/ahmedsamy00x/spend-less-landing-page",
   },
 ];
 

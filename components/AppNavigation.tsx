@@ -11,16 +11,17 @@ import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { NotepadIcon } from "@phosphor-icons/react";
 
 const links = [
   { href: "/", icon: Home, label: "Home", position: "top" },
-  { href: "/about", icon: User, label: "About", position: "right" },
-  {
-    href: "/projects",
-    icon: FolderOpen,
-    label: "Projects",
-    position: "left",
-  },
+  { href: "/blog", icon: NotepadIcon, label: "Blog", position: "bottom" },
+  // {
+  //   href: "/projects",
+  //   icon: FolderOpen,
+  //   label: "Projects",
+  //   position: "left",
+  // },
   // { href: "/contact", icon: Mail, label: "Contact", position: "left" },
 ];
 
