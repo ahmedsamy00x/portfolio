@@ -21,7 +21,7 @@ const Projects = () => {
           ))}
         </div>
 
-        <Link
+        {/* <Link
           href="/projects"
           className="cursor-pointer mt-4 px-0 transition flex items-center text-primary"
         >
@@ -38,7 +38,7 @@ const Projects = () => {
               <ArrowRight size={16} />
             </motion.div>
           </Button>
-        </Link>
+        </Link> */}
       </div>
     </section>
   );

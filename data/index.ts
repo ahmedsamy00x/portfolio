@@ -7,7 +7,7 @@ const experience = [
     role: "Frontend Engineer",
     duration: "Jan 2024 - Present",
     description:
-      "Developed and maintained the front end of the company website using React and Next.js.Developed and maintained the front end of the company website using React and Next.js.Developed and maintained the front end of the company website using React and Next.js.",
+      "At Buguard LLC, I worked as a Frontend Engineer building scalable dashboards and web applications using React and Next.js. I translated complex Figma designs into reusable, high-performance UI components and integrated data from REST and GraphQL APIs. I collaborated closely with backend teams, contributing to API integration and occasional endpoint development using Node.js and Express. I also optimized rendering performance using SSR, lazy loading, and code splitting, and mentored interns on development best practices, component architecture, and Git workflows.",
   },
   // {
   //   company: "Freelance",

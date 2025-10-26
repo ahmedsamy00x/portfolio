@@ -4,16 +4,29 @@ import {
   MarqueeFade,
   MarqueeItem,
 } from "@/components/ui/shadcn-io/marquee";
-import Image from "next/image";
 import React from "react";
-import nextjs from "../../../public/next.svg";
-import react from "../../../public/re.svg";
-import typescript from "../../../public/ts.svg";
-import tailwind from "../../../public/tail.svg";
-import nodejs from "../../../public/three.svg";
+import {
+  SiReact,
+  SiNodedotjs,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiGit,
+  SiSupabase,
+  SiGreensock,
+} from "react-icons/si";
 import SectionTitle from "@/components/SectionTitle";
 
-const stack = [nextjs, react, typescript, tailwind, nodejs];
+const stack = [
+  { icon: SiReact, name: "React" },
+  { icon: SiNodedotjs, name: "Node.js" },
+  { icon: SiNextdotjs, name: "Next.js" },
+  { icon: SiTypescript, name: "TypeScript" },
+  { icon: SiTailwindcss, name: "Tailwind CSS" },
+  { icon: SiGit, name: "Git" },
+  { icon: SiSupabase, name: "Supabase" },
+  { icon: SiGreensock, name: "GSAP" },
+];
 
 const Stack = () => {
   return (
@@ -24,15 +37,14 @@ const Stack = () => {
           <MarqueeFade side="left" />
           <MarqueeFade side="right" />
           <MarqueeContent>
-            {stack.map((item, index) => (
-              <MarqueeItem className="-mx-2 h-16 w-16" key={index}>
-                <Image
-                  alt={`Placeholder ${index}`}
-                  className="overflow-hidden rounded-full ring-2 w-10 h-10 ring-background"
-                  src={item}
-                />
-              </MarqueeItem>
-            ))}
+            {stack.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <MarqueeItem className="-mx-1 h-16 w-16" key={index}>
+                  <Icon className="w-10 h-10" aria-label={item.name} />
+                </MarqueeItem>
+              );
+            })}
           </MarqueeContent>
         </Marquee>
       </div>

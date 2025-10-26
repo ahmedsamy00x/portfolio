@@ -27,7 +27,7 @@ const Contact = () => {
             </Button>
           </Link>
           <Link
-            href="https://drive.google.com/file/d/1QO00XdoVby7wjLXu_cg0E7EgBVg7EqgU/view?usp=sharing"
+            href="https://drive.google.com/file/d/1nxVSIBePS6dN19abMMIrAT-SJYKOtJvI/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
           >
