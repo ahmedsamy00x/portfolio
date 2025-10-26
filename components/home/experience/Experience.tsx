@@ -1,12 +1,7 @@
 "use client";
 import SectionTitle from "@/components/SectionTitle";
 import { experience } from "@/data";
-import {
-  ArrowLeft,
-  ArrowLeftIcon,
-  ChevronRight,
-  ChevronUp,
-} from "lucide-react";
+import { ChevronRight, ChevronUp } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";

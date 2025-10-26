@@ -1,14 +1,10 @@
 "use client";
 import SectionTitle from "@/components/SectionTitle";
-import Image from "next/image";
+
 import React from "react";
-import da from "../../../public/darkatlas.webp";
+
 import ProjectCard from "./ProjectCard";
 import { projects } from "@/data";
-import { Button } from "@/components/ui/button";
-import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 const Projects = () => {
   return (

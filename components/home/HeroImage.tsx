@@ -5,7 +5,6 @@ import me from "../../public/me.jpg";
 import {
   GithubLogoIcon,
   LinkedinLogoIcon,
-  XLogo,
   XLogoIcon,
 } from "@phosphor-icons/react";
 import Link from "next/link";

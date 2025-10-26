@@ -1,12 +1,5 @@
 "use client";
-import {
-  Home,
-  User,
-  FolderOpen,
-  Mail,
-  Navigation,
-  Navigation2,
-} from "lucide-react";
+import { Home, Navigation2 } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
