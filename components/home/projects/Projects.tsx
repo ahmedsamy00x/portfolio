@@ -1,8 +1,6 @@
 "use client";
 import SectionTitle from "@/components/SectionTitle";
-
 import React from "react";
-
 import ProjectCard from "./ProjectCard";
 import { projects } from "@/data";
 
