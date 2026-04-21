@@ -1,39 +1,32 @@
 "use client";
-import SectionTitle from "@/components/SectionTitle";
 import React from "react";
 import ProjectCard from "./ProjectCard";
 import { projects } from "@/data";
+import SectionHeader from "@/components/SectionHeader";
 
 const Projects = () => {
   return (
-    <section className=" flex items-center justify-center py-20">
-      <div className="max-w-4xl mx-auto">
-        <SectionTitle title="Projects" />
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.title} {...project} />
-          ))}
-        </div>
+    <section aria-labelledby="projects-heading" className="py-12 md:py-16">
+      <SectionHeader
+        index="04"
+        title="Selected Work"
+        meta={`${projects.length.toString().padStart(2, "0")} Entries`}
+      />
 
-        {/* <Link
-          href="/projects"
-          className="cursor-pointer mt-4 px-0 transition flex items-center text-primary"
-        >
-          <Button variant="link" className="cursor-pointer pl-1">
-            <span className="text-base font-medium">All Projects</span>
-            <motion.div
-              animate={{ x: [0, 4, 0] }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <ArrowRight size={16} />
-            </motion.div>
-          </Button>
-        </Link> */}
-      </div>
+      <h2 id="projects-heading" className="sr-only">
+        Selected Work
+      </h2>
+
+      <ol className="flex flex-col">
+        {projects.map((project, idx) => (
+          <ProjectCard
+            key={project.title}
+            {...project}
+            index={idx + 1}
+            isLast={idx === projects.length - 1}
+          />
+        ))}
+      </ol>
     </section>
   );
 };

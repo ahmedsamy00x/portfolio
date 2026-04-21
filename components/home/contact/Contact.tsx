@@ -1,51 +1,94 @@
-"use client";
-import SectionTitle from "@/components/SectionTitle";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
-import { motion } from "motion/react";
-import { ArrowRight, Mail } from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
+import { ArrowUpRight } from "lucide-react";
+
+const channels: Array<{ label: string; value: string; href: string; external?: boolean }> = [
+  {
+    label: "Email",
+    value: "ahmedsamy446x@gmail.com",
+    href: "mailto:ahmedsamy446x@gmail.com",
+  },
+  {
+    label: "Résumé",
+    value: "drive.google.com",
+    href: "https://drive.google.com/file/d/1nxVSIBePS6dN19abMMIrAT-SJYKOtJvI/view",
+    external: true,
+  },
+  {
+    label: "GitHub",
+    value: "@ahmedsamy00x",
+    href: "https://github.com/ahmedsamy00x",
+    external: true,
+  },
+  {
+    label: "LinkedIn",
+    value: "ahmedsamyy1",
+    href: "https://www.linkedin.com/in/ahmedsamyy1",
+    external: true,
+  },
+  {
+    label: "X",
+    value: "@lowkeylu__",
+    href: "https://x.com/lowkeylu__",
+    external: true,
+  },
+];
 
 const Contact = () => {
   return (
-    <section className="pb-20">
-      <SectionTitle title="Get In Touch" />
-      <div className="space-y-4">
-        <p className="text-base max-w-xl leading-6">
-          I&rsquo;m always interested in hearing about new opportunities and
-          connecting with fellow developers. Let&rsquo;s build something amazing
-          together!
-        </p>
-        <div className="flex items-center gap-4">
-          <Link
-            href="mailto:ahmedsamy446x@gmail.com"
-            className="cursor-pointer px-0 transition flex items-center text-primary"
+    <section aria-labelledby="contact-heading" className="py-12 md:py-16">
+      <SectionHeader index="05" title="Correspondence" meta="Available 2026" />
+
+      <div className="grid gap-10 md:gap-12 md:grid-cols-[1fr_minmax(0,1fr)] md:items-start">
+        <div>
+          <h2
+            id="contact-heading"
+            className="text-title font-serif leading-[1.05]"
           >
-            <Button className="cursor-pointer pl-1">
-              <Mail />
-              <span className="text-sm font-medium">Email Me</span>
-            </Button>
-          </Link>
-          <Link
-            href="https://drive.google.com/file/d/1nxVSIBePS6dN19abMMIrAT-SJYKOtJvI/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="outline" className="cursor-pointer">
-              <span className="text-sm font-medium">View Resume</span>
-              <motion.div
-                animate={{ x: [0, 4, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <ArrowRight size={16} />
-              </motion.div>
-            </Button>
-          </Link>
+            Let&rsquo;s make
+            <br />
+            <span className="italic text-accent">something</span> together.
+          </h2>
+          <p className="mt-6 text-small text-muted-foreground max-w-[48ch] leading-relaxed">
+            Available for selective frontend engineering work — product,
+            landing, dashboards, interface systems. Reply time is usually within
+            a day.
+          </p>
         </div>
+
+        <dl className="md:pt-2">
+          {channels.map((channel, i) => (
+            <div
+              key={channel.label}
+              className={`grid grid-cols-[80px_1fr] items-baseline gap-4 py-3 ${
+                i !== channels.length - 1
+                  ? "border-b border-[color:var(--border)]"
+                  : ""
+              }`}
+            >
+              <dt className="label-eyebrow">{channel.label}</dt>
+              <dd className="text-small">
+                <Link
+                  href={channel.href}
+                  {...(channel.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="link-underline inline-flex items-baseline gap-1"
+                >
+                  <span>{channel.value}</span>
+                  {channel.external && (
+                    <ArrowUpRight
+                      size={12}
+                      className="translate-y-[2px] opacity-60"
+                      aria-hidden
+                    />
+                  )}
+                </Link>
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

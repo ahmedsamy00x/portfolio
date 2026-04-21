@@ -1,92 +1,70 @@
-"use client";
-import SectionTitle from "@/components/SectionTitle";
 import { education } from "@/data";
-import { ExternalLink } from "lucide-react";
 import Image from "next/image";
-import React, { useState } from "react";
-import { motion } from "motion/react";
 import Link from "next/link";
-
-const EducationItem = ({
-  institution,
-  institutionLink,
-  institutionLogo,
-  degree,
-  duration,
-  description,
-}: {
-  institution: string;
-  institutionLink: string;
-  institutionLogo: string;
-  degree: string;
-  duration: string;
-  description: string;
-}) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleClick = () => {
-    window.open(institutionLink, "_blank", "noopener,noreferrer");
-  };
-
-  return (
-    <div className="">
-      <Link
-        className="flex items-start justify-between cursor-pointer min-h-[48px]"
-        href={institutionLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="flex gap-3 items-start flex-1 min-w-0">
-          <div className="flex-shrink-0">
-            <Image
-              src={institutionLogo}
-              alt={institution}
-              width={40}
-              height={40}
-              className="rounded-full object-contain"
-            />
-          </div>
-
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2">
-              <h3 className="text-base font-medium truncate">{institution}</h3>
-              <motion.span
-                className="text-muted-foreground/55 flex-shrink-0"
-                animate={{
-                  opacity: isHovered ? 1 : 0,
-                }}
-                transition={{ duration: 0.2 }}
-              >
-                <ExternalLink size={16} />
-              </motion.span>
-            </div>
-            <p className="text-sm text-muted-foreground">{degree}</p>
-            <p className="text-sm text-muted-foreground mt-1">{description}</p>
-          </div>
-        </div>
-
-        <div className="flex-shrink-0 text-right ml-4">
-          <p className="text-sm text-muted-foreground whitespace-nowrap">
-            {duration}
-          </p>
-        </div>
-      </Link>
-    </div>
-  );
-};
+import React from "react";
+import SectionHeader from "@/components/SectionHeader";
+import { ArrowUpRight } from "lucide-react";
 
 const Education = () => {
   return (
-    <div className="pt-20">
-      <SectionTitle title="Education" />
-      <div className="flex flex-col gap-6">
-        {education.map((item, index) => (
-          <EducationItem key={index} {...item} />
+    <section aria-labelledby="education-heading" className="py-12 md:py-16">
+      <SectionHeader index="03" title="Formation" meta="2020 — 2024" />
+
+      <h2 id="education-heading" className="sr-only">
+        Education
+      </h2>
+
+      <ol className="flex flex-col gap-12 md:gap-14">
+        {education.map((item) => (
+          <li
+            key={item.institution}
+            className="grid gap-6 md:gap-10 md:grid-cols-[160px_minmax(0,1fr)]"
+          >
+            <div className="flex items-center gap-4 md:flex-col md:items-start md:gap-5">
+              <span className="label-eyebrow num-tabular">
+                {item.duration}
+              </span>
+              <div className="w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-sm bg-surface-sunken border border-border flex items-center justify-center shrink-0">
+                <Image
+                  src={item.institutionLogo}
+                  alt={item.institution}
+                  width={48}
+                  height={48}
+                  className="object-contain w-full h-full"
+                />
+              </div>
+            </div>
+
+            <article className="flex flex-col gap-3 md:gap-4">
+              <header className="flex flex-col gap-1">
+                <h3 className="text-heading font-serif leading-tight">
+                  {item.degree}
+                </h3>
+                <p className="text-small text-muted-foreground">
+                  <Link
+                    href={item.institutionLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-solid inline-flex items-center gap-1 text-foreground/90"
+                  >
+                    {item.institution}
+                    <ArrowUpRight
+                      size={12}
+                      className="opacity-60"
+                      aria-hidden
+                    />
+                  </Link>
+                </p>
+              </header>
+
+              <p className="text-small text-foreground/80 leading-relaxed max-w-[68ch]">
+                {item.description}
+              </p>
+            </article>
+          </li>
         ))}
-      </div>
-    </div>
+      </ol>
+    </section>
   );
 };
 

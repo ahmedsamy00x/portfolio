@@ -1,37 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto, Lora } from "next/font/google";
+import { Bodoni_Moda, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import AppNavigation from "@/components/AppNavigation";
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import ResponsiveMenuDock from "@/components/ResponsiveMenuDock";
+import StickyHeader from "@/components/StickyHeader";
+import Footer from "@/components/Footer";
 
-const roboto = Roboto({
-  variable: "--font-roboto",
+const bodoniModa = Bodoni_Moda({
+  variable: "--font-bodoni",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const lora = Lora({
-  variable: "--font-lora",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Ahmed Samy - Frontend Engineer",
-  description: "Building and shipping modern web applications",
+  title: "Ahmed Samy — Frontend Engineer",
+  description:
+    "Frontend Engineer building considered web interfaces at Buguard. Selected work, notes, and contact.",
+  metadataBase: new URL("https://ahmedsamy.dev"),
 };
 
 export default function RootLayout({
@@ -40,9 +40,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${roboto.variable} ${lora.variable} ${geistSans.variable} ${geistMono.variable}   antialiased`}
+        className={`${bodoniModa.variable} ${geist.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -50,19 +50,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className=" min-h-screen bg-background text-foreground">
-            {/* Large screen navigation */}
-
-            <AppNavigation />
-
-            <div className="fixed top-4 right-4 z-50">
-              <ModeToggle />
-            </div>
-
-            {/* Small screen navigation */}
-            <ResponsiveMenuDock />
-            <div className="max-w-3xl mx-auto">{children}</div>
-          </main>
+          <div className="min-h-screen flex flex-col bg-background text-foreground">
+            <StickyHeader />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>

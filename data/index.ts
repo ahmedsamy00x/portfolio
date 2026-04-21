@@ -1,31 +1,41 @@
 const experience = [
   {
-    company: "BuguardLLC",
-    location: "Remote",
+    company: "Buguard LLC",
     companyLink: "https://buguard.io",
     companyLogo: "/buguard-logo.webp",
     role: "Frontend Engineer",
-    duration: "Jan 2024 - Present",
+    location: "Cairo, Egypt",
+    duration: "Jan 2024 — Present",
     description:
-      "At Buguard LLC, I worked as a Frontend Engineer building scalable dashboards and web applications using React and Next.js. I translated complex Figma designs into reusable, high-performance UI components and integrated data from REST and GraphQL APIs. I collaborated closely with backend teams, contributing to API integration and occasional endpoint development using Node.js and Express. I also optimized rendering performance using SSR, lazy loading, and code splitting, and mentored interns on development best practices, component architecture, and Git workflows.",
+      "Building and maintaining cybersecurity dashboards and landing pages in React, Next.js, and Tailwind. Designed data-intensive dashboards and interactive tables for real-time threat insights; integrated REST and GraphQL APIs for cross-product data sync; built modular components and analytics visualizations with Ant Design and React Query. Implemented RBAC across admin, analyst, and client roles, led the migration to a unified monorepo, and optimized performance with SSR, lazy loading, and code splitting. Mentor interns on component architecture, Git workflows, and best practices.",
   },
-  // {
-  //   company: "Freelance",
-  //   location: "Remote",
-  //   companyLink: "https://buguard.io",
-  //   companyLogo: "/next.svg",
-  //   role: "Frontend Engineer",
-  //   duration: "Jan 2022 - Present",
-  //   description:
-  //     "Developed and maintained the front end of the company website using React and Next.js.",
-  // },
+  {
+    company: "OEE-Intellisuite",
+    companyLink: "https://oeeintellisuite.com",
+    companyLogo: "",
+    role: "Fullstack Developer — Part-time",
+    location: "Remote",
+    duration: "Jan 2026 — Present",
+    description:
+      "Fullstack work on the OEE and Vorne projects. Build server-side and client-side features end-to-end in Next.js and TypeScript, with PostgreSQL and Prisma for data modeling, migrations, and optimized queries. Implemented real-time synchronization between client and server via Zero Sync, and maintain the automated test suite with Vitest for unit/integration tests and Playwright for end-to-end.",
+  },
+  {
+    company: "Upwork",
+    companyLink: "https://www.upwork.com/freelancers/~ahmedsamy",
+    companyLogo: "",
+    role: "Frontend Developer — Freelance",
+    location: "Remote",
+    duration: "Oct 2025 — Present",
+    description:
+      "Custom dashboards in Next.js, TypeScript, and Prisma. Built device downtime logs and analytics for a Work Tracker Dashboard, integrated PostgreSQL with optimized queries and data models for real-time updates, and used Zero Sync for fast client/server synchronization. Deliver responsive, scalable UI following modern architecture and performance standards.",
+  },
 ];
 
 const education = [
   {
-    institution: "University Sadat City",
+    institution: "University of Sadat City",
     degree: "B.Sc. Computer Science",
-    duration: "2020 - 2024",
+    duration: "2020 — 2024",
     institutionLink: "https://usc.edu.eg",
     institutionLogo: "/uni.png",
     description:
@@ -37,26 +47,43 @@ const projects = [
   {
     title: "Threat Intelligence Platform",
     description:
-      "A security-focused web application that aggregates and analyzes threat intelligence data from multiple sources, providing real-time alerts and insights to help organizations stay ahead of potential cyber threats.",
+      "Darkatlas's dark-web monitoring platform. Owned end-to-end features including data-heavy tables with filtering, sorting, and pagination for real-time threat intelligence. Independently implemented interactive charts for threat trends, exposure metrics, and monitoring activity. Integrated REST APIs and built robust form validation flows as self-contained features from design to deployment.",
     technologies: [
       "React",
+      "Next.js",
       "TypeScript",
       "Tailwind CSS",
       "Ant Design",
-      "Recharts",
-      "ChartJS",
-      "Formik",
-      "Yup",
       "React Query",
+      "Recharts",
+      "Monorepo",
     ],
     image: "/threat-intel.png",
     previewLink: "https://threat.darkatlas.io",
     repoLink: "",
   },
   {
+    title: "Nagah Furniture",
+    description:
+      "A full-stack, multilingual e-commerce platform for a furniture company. Modern, responsive UI with Tailwind and shadcn/ui; authentication and session management via NextAuth; PostgreSQL (Neon) with Prisma for scalable data modeling and querying. Zustand drives global state for cart, language, and UI. Arabic and English support from day one.",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "NextAuth",
+      "Prisma",
+      "PostgreSQL",
+      "Zustand",
+    ],
+    image: "/nagah-furniture.png",
+    previewLink: "https://nagah-furniture.vercel.app/en",
+    repoLink: "",
+  },
+  {
     title: "DarkAtlas Landing Page",
     description:
-      "A landing page for DarkAtlas, showcasing its features and benefits with a sleek, modern design and responsive layout.",
+      "Landing page for DarkAtlas showcasing the platform's capabilities with a sleek, modern design and responsive layout.",
     technologies: [
       "React",
       "Next.js",
@@ -72,7 +99,7 @@ const projects = [
   {
     title: "Spendless",
     description:
-      "An app to track recurring expenses and subscriptions, helping users manage their finances effectively by providing insights and reminders for upcoming payments.",
+      "An app to track recurring expenses and subscriptions, helping users stay on top of their finances with insights and reminders for upcoming payments.",
     technologies: [
       "React",
       "Next.js",
@@ -87,4 +114,19 @@ const projects = [
   },
 ];
 
-export { education, experience, projects };
+// Organized by role, not popularity. Edit freely — Stack component reads this.
+const stack: Array<{ category: string; items: string[] }> = [
+  { category: "Languages", items: ["TypeScript", "JavaScript"] },
+  { category: "Frameworks", items: ["React", "Next.js"] },
+  { category: "State & Data", items: ["React Query", "Zustand", "Prisma"] },
+  {
+    category: "Interface",
+    items: ["Tailwind CSS", "SASS", "Ant Design", "shadcn/ui"],
+  },
+  { category: "Backend", items: ["Node.js", "Express", "REST", "GraphQL"] },
+  { category: "Databases", items: ["PostgreSQL", "Supabase"] },
+  { category: "Testing", items: ["Vitest", "Playwright"] },
+  { category: "Tooling", items: ["Git", "Vite", "Webpack", "ESLint"] },
+];
+
+export { education, experience, projects, stack };

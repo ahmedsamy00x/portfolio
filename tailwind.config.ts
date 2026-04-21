@@ -84,10 +84,8 @@ const config: Config = {
         xl: "var(--radius-xl)",
       },
       fontFamily: {
-        sans: "var(--font-sans)",
-        mono: "var(--font-mono)",
-        roboto: "var(--font-roboto)",
-        lora: "var(--font-lora)",
+        sans: "var(--font-ibm-plex)",
+        mono: "var(--font-geist-mono)",
       },
       animation: {
         "fade-in": "fade-in 0.5s ease-in-out",

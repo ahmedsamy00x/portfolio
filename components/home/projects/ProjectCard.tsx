@@ -1,9 +1,20 @@
 "use client";
-import { GithubLogoIcon } from "@phosphor-icons/react";
-import { Navigation } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { ArrowUpRight } from "lucide-react";
+import { GithubLogo } from "@phosphor-icons/react";
+
+type Props = {
+  title: string;
+  description: string;
+  technologies: string[];
+  image: string;
+  previewLink: string;
+  repoLink: string;
+  index: number;
+  isLast: boolean;
+};
 
 const ProjectCard = ({
   title,
@@ -12,52 +23,104 @@ const ProjectCard = ({
   image,
   previewLink,
   repoLink,
-}: {
-  title: string;
-  description: string;
-  technologies: string[];
-  image: string;
-  previewLink: string;
-  repoLink: string;
-}) => {
+  index,
+  isLast,
+}: Props) => {
+  const previewHost = previewLink
+    ? previewLink.replace(/^https?:\/\//, "").replace(/\/$/, "")
+    : "";
+  const hasAnyLink = Boolean(previewLink || repoLink);
+
   return (
-    <div className="bg-card rounded-lg border overflow-hidden hover:shadow-sm transition flex flex-col h-full">
-      <Image src={image} alt={title} width={500} height={300} />
-      <div className="p-2 mt-3 flex flex-col flex-grow">
-        <h3 className="text-base font-semibold mb-4">{title}</h3>
-        <p className="text-muted-foreground mb-4 text-sm">{description}</p>
-        <div className="flex gap-2 text-xs flex-wrap mb-4">
-          {technologies.map((tech) => (
-            <span
-              key={tech}
-              className="px-2 py-1 bg-primary/10 rounded text-xs"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-        <div className="mt-auto flex gap-2">
-          {repoLink && (
-            <Link
-              href={repoLink}
-              target="_blank"
-              className="p-1 hover:text-primary rounded-full cursor-pointer bg-primary/20 w-8 h-8 flex items-center justify-center"
-            >
-              <GithubLogoIcon size={16} />
-            </Link>
-          )}
-          {previewLink && (
-            <Link
-              href={previewLink}
-              target="_blank"
-              className="p-1 hover:text-primary rounded-full cursor-pointer bg-primary/20 w-8 h-8 flex items-center justify-center"
-            >
-              <Navigation size={16} />
-            </Link>
-          )}
-        </div>
+    <li
+      className={`grid gap-6 md:gap-8 lg:gap-10 md:grid-cols-[40px_minmax(0,1.35fr)_minmax(0,1fr)] md:items-start py-10 md:py-12 ${
+        !isLast ? "border-b border-[color:var(--border)]" : ""
+      }`}
+    >
+      <div className="numeral text-subhead md:text-heading text-subtle-foreground md:pt-1">
+        {index.toString().padStart(2, "0")}
       </div>
-    </div>
+
+      <div className="flex flex-col gap-5 min-w-0 order-3 md:order-none">
+        <h3 className="text-heading font-serif leading-[1.1]">{title}</h3>
+
+        <p className="text-small text-foreground/85 leading-relaxed max-w-[56ch]">
+          {description}
+        </p>
+
+        <ul className="flex flex-wrap items-center gap-x-2 gap-y-1 text-caption font-mono text-muted-foreground">
+          {technologies.map((tech, i) => (
+            <li key={tech} className="inline-flex items-center">
+              <span>{tech}</span>
+              {i < technologies.length - 1 && (
+                <span
+                  className="ml-2 text-subtle-foreground/50 select-none"
+                  aria-hidden
+                >
+                  ·
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+
+        {hasAnyLink ? (
+          <div className="flex items-center gap-6 pt-1">
+            {previewLink && (
+              <Link
+                href={previewLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline text-small inline-flex items-baseline gap-1.5"
+              >
+                <span>Visit {previewHost}</span>
+                <ArrowUpRight
+                  size={13}
+                  className="translate-y-[2px]"
+                  aria-hidden
+                />
+              </Link>
+            )}
+            {repoLink && (
+              <Link
+                href={repoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline text-small inline-flex items-center gap-1.5 text-muted-foreground"
+              >
+                <GithubLogo size={14} weight="regular" />
+                <span>Source</span>
+              </Link>
+            )}
+          </div>
+        ) : (
+          <p className="label-eyebrow pt-1">Private repository</p>
+        )}
+      </div>
+
+      <figure className="w-full md:order-none">
+        {image ? (
+          <div className="relative w-full aspect-[16/10] overflow-hidden border border-[color:var(--border)] bg-surface-sunken">
+            <Image
+              src={image}
+              alt={`${title} preview`}
+              fill
+              sizes="(min-width: 1024px) 420px, (min-width: 768px) 40vw, 100vw"
+              className="object-cover transition-[transform,filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] grayscale-[0.15] hover:grayscale-0 hover:scale-[1.015]"
+            />
+          </div>
+        ) : (
+          <div
+            className="relative w-full aspect-[16/10] overflow-hidden border border-dashed border-[color:var(--border)] bg-surface-sunken flex items-center justify-center"
+            aria-hidden
+          >
+            <span className="label-eyebrow text-subtle-foreground">
+              Preview forthcoming
+            </span>
+          </div>
+        )}
+      </figure>
+    </li>
   );
 };
 
