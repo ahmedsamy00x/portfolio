@@ -17,7 +17,7 @@
   --surface-sunken: oklch(0.935 0.012 80);
   --muted: oklch(0.92 0.012 80);
   --muted-foreground: oklch(0.44 0.014 65);
-  --subtle-foreground: oklch(0.60 0.012 70);
+  --subtle-foreground: oklch(0.46 0.014 65);  /* 4.5:1 on --background */
 
   --border: oklch(0.88 0.014 78);
   --rule: oklch(0.20 0.012 60);
@@ -91,7 +91,7 @@
   --surface-sunken: oklch(0.115 0.006 75);
   --muted: oklch(0.22 0.010 72);
   --muted-foreground: oklch(0.68 0.012 75);
-  --subtle-foreground: oklch(0.52 0.012 72);
+  --subtle-foreground: oklch(0.665 0.012 72); /* 4.5:1 on --background */
 
   --border: oklch(0.26 0.010 72);
   --rule: oklch(0.90 0.012 78);
@@ -146,9 +146,12 @@
   --color-input: var(--input);
   --color-accent-foreground: var(--accent-foreground);
 
-  --font-sans: var(--font-body);
-  --font-serif: var(--font-serif);
-  --font-mono: var(--font-mono);
+  /* Point at the next/font source variables, not at the :root aliases above.
+     Self-referencing these (--font-serif: var(--font-serif)) makes them
+     resolve to nothing and every face silently falls back to system sans. */
+  --font-sans: var(--font-geist);
+  --font-serif: var(--font-bodoni);
+  --font-mono: var(--font-geist-mono);
 
   --radius-sm: calc(var(--radius));
   --radius-md: calc(var(--radius) + 2px);
@@ -225,8 +228,8 @@
   /* Editorial label: small all-caps with tight tracking */
   .label-eyebrow {
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
+    font-size: 0.75rem;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
     color: var(--subtle-foreground);
     font-weight: 500;

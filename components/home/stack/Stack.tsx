@@ -15,8 +15,13 @@ const Stack = () => {
         {stack.map((group, i) => (
           <React.Fragment key={group.category}>
             <dt className="label-eyebrow md:pt-[0.35rem]">{group.category}</dt>
+            {/* Flex-wrap rather than inline flow: the items and their middot
+                separators carry no whitespace between them, so in inline flow
+                a row like "Node.js·Express·REST·GraphQL" has no break
+                opportunity and its min-content widens the grid track past the
+                container. As flex items each one can start a new line. */}
             <dd
-              className={`text-heading font-serif text-foreground/95 ${
+              className={`flex flex-wrap items-baseline gap-x-3 gap-y-1 min-w-0 text-heading font-serif text-foreground/95 ${
                 i !== stack.length - 1
                   ? "pb-6 md:pb-7 border-b border-[color:var(--border)]"
                   : ""
@@ -28,7 +33,7 @@ const Stack = () => {
                   {idx < group.items.length - 1 && (
                     <span
                       aria-hidden
-                      className="mx-3 text-muted-foreground/60 font-body text-subhead align-middle"
+                      className="text-muted-foreground/60 font-body text-subhead"
                     >
                       ·
                     </span>

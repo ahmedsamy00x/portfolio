@@ -32,7 +32,7 @@ const StickyHeader = () => {
       <div className="container-page h-16 flex items-center justify-between gap-4">
         <Link
           href="/"
-          aria-label="Ahmed Samy — home"
+          aria-label="Ahmed Samy, home"
           className="flex items-baseline gap-2 group"
         >
           <span className="font-serif text-subhead leading-none tracking-tight group-hover:text-accent transition-colors duration-200">
@@ -42,7 +42,7 @@ const StickyHeader = () => {
             aria-hidden
             className="label-eyebrow hidden sm:inline text-subtle-foreground/80"
           >
-            — Frontend Engineer
+            / Frontend Engineer
           </span>
         </Link>
 
