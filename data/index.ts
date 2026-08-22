@@ -105,7 +105,6 @@ type Project = {
   /** One line for the index row. The lead entry uses `description`. */
   summary: string;
   description: string;
-  role: string;
   technologies: string[];
   image: string;
   /** Alt text describing what the screenshot actually shows. */
@@ -128,9 +127,7 @@ const projects: Project[] = [
       "Buguard's cyber-intelligence platform. Four products and two marketing sites.",
     description:
       "Four security products sharing a design system, a component library, and a monorepo, plus the two marketing sites in front of them. I work across all four products on frontend features: data-heavy tables with filtering, sorting, and pagination; analytics visualizations for threat trends and exposure; RBAC across admin, analyst, and client roles; and REST and GraphQL integration for cross-product data sync.",
-    role: "Frontend engineer, feature owner",
     meta: [
-      { label: "Scope", value: "Four products, two sites, shared component library" },
       { label: "Context", value: "Buguard, 2024 to present" },
     ],
     technologies: [
@@ -219,7 +216,6 @@ const projects: Project[] = [
       "Full-stack multilingual storefront. Arabic and English, cart and auth, Postgres and Prisma.",
     description:
       "A full-stack, multilingual e-commerce platform for a furniture company. Responsive UI with Tailwind and shadcn/ui; authentication and session management via NextAuth; PostgreSQL (Neon) with Prisma for data modeling and querying. Zustand drives global state for cart, language, and UI.",
-    role: "Solo, full stack",
     technologies: [
       "Next.js",
       "TypeScript",
@@ -241,7 +237,6 @@ const projects: Project[] = [
     summary: "Recurring-expense and subscription tracker.",
     description:
       "An app to track recurring expenses and subscriptions, with insights and reminders for upcoming payments.",
-    role: "Solo",
     technologies: [
       "React",
       "Next.js",

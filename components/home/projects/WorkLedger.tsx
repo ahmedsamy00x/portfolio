@@ -68,7 +68,7 @@ const Links = ({ entry }: { entry: Entry }) => {
  */
 const WorkLedger = ({ entries }: { entries: Entry[] }) => {
   const cols =
-    "grid-cols-[34px_minmax(0,1fr)_18px] md:grid-cols-[34px_minmax(0,1.5fr)_minmax(0,0.8fr)_minmax(0,1.15fr)_18px]";
+    "grid-cols-[34px_minmax(0,1fr)_18px] md:grid-cols-[34px_minmax(0,1.6fr)_minmax(0,1.2fr)_18px]";
 
   return (
     <div>
@@ -79,7 +79,6 @@ const WorkLedger = ({ entries }: { entries: Entry[] }) => {
       >
         <span className="label-eyebrow">No.</span>
         <span className="label-eyebrow">Project</span>
-        <span className="label-eyebrow">Role</span>
         <span className="label-eyebrow">Stack</span>
         <span />
       </div>
@@ -99,22 +98,18 @@ const WorkLedger = ({ entries }: { entries: Entry[] }) => {
                   <span className="block text-heading font-serif leading-[1.12] transition-colors duration-200 group-hover:text-accent group-open:text-accent">
                     {entry.title}
                   </span>
-                  {/* Below md the role and stack columns are gone, so the
-                      one-line summary stands in for them. */}
+                  {/* Below md the stack column is gone, so the one-line
+                      summary stands in for it. */}
                   <span className="md:hidden mt-1.5 block text-small text-muted-foreground leading-relaxed">
                     {entry.summary}
                   </span>
                 </span>
 
-                <span className="hidden md:block text-small text-muted-foreground">
-                  {entry.role}
-                </span>
-
-                {/* Three items keeps every closed row one line tall, so the
+                {/* Capped so every closed row stays one line tall and the
                     ledger reads as a table rather than a ragged list. The full
                     stack is in the open row. */}
                 <span className="hidden md:block">
-                  <TechList items={entry.technologies.slice(0, 3)} />
+                  <TechList items={entry.technologies.slice(0, 4)} />
                 </span>
 
                 <Plus
