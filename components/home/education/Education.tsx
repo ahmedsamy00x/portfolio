@@ -3,12 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import SectionHeader from "@/components/SectionHeader";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "@phosphor-icons/react/ssr";
 
 const Education = () => {
   return (
     <section aria-labelledby="education-heading" className="py-12 md:py-16">
-      <SectionHeader index="03" title="Formation" meta="2020 — 2024" />
+      <SectionHeader index="03" title="Formation" meta="2020 - 2024" />
 
       <h2 id="education-heading" className="sr-only">
         Education

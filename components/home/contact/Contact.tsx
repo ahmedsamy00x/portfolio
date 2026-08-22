@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import SectionHeader from "@/components/SectionHeader";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "@phosphor-icons/react/ssr";
 
 const channels: Array<{ label: string; value: string; href: string; external?: boolean }> = [
   {
@@ -51,8 +51,8 @@ const Contact = () => {
             <span className="italic text-accent">something</span> together.
           </h2>
           <p className="mt-6 text-small text-muted-foreground max-w-[48ch] leading-relaxed">
-            Available for selective frontend engineering work — product,
-            landing, dashboards, interface systems. Reply time is usually within
+            Available for selective frontend engineering work: product, landing,
+            dashboards, interface systems. Reply time is usually within
             a day.
           </p>
         </div>

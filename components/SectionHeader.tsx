@@ -11,7 +11,7 @@ const SectionHeader = ({ index, title, meta }: Props) => {
     <header className="mb-10 md:mb-12">
       <div className="flex items-baseline justify-between gap-6">
         <span className="label-eyebrow">
-          § {index} — {title}
+          § {index} / {title}
         </span>
         {meta && (
           <span className="label-eyebrow num-tabular">{meta}</span>

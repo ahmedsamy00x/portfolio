@@ -2,7 +2,7 @@ import React from "react";
 import SectionHeader from "@/components/SectionHeader";
 
 export const metadata = {
-  title: "Notes — Ahmed Samy",
+  title: "Notes, Ahmed Samy",
   description: "Writing on frontend engineering, craft, and small experiments.",
 };
 
@@ -10,7 +10,7 @@ const BlogPage = () => {
   return (
     <div className="container-page pb-24 md:pb-32">
       <section aria-labelledby="notes-heading" className="py-12 md:py-16">
-        <SectionHeader index="—" title="Notes" meta="Forthcoming" />
+        <SectionHeader index="06" title="Notes" meta="Forthcoming" />
 
         <div className="grid gap-10 md:grid-cols-[1fr_minmax(0,1fr)] md:items-start">
           <h1

@@ -9,12 +9,10 @@ const Hero = () => {
       aria-labelledby="masthead"
       className="py-12 md:py-16"
     >
-      {/* Section meta row — index + locality, Werkstatt / are.na TOC feel */}
-      <div className="flex items-baseline justify-between gap-6 mb-10 md:mb-14">
-        <span className="label-eyebrow">§ 00 — Masthead</span>
-        <span className="label-eyebrow num-tabular">
-          Egypt · GMT+02
-        </span>
+      {/* Running head. The locality/timezone strip that used to sit opposite
+          was decoration, so the label now carries the row alone. */}
+      <div className="flex items-baseline gap-6 mb-10 md:mb-14">
+        <span className="label-eyebrow">§ 00 / Masthead</span>
       </div>
 
       <div className="grid gap-10 md:gap-12 md:grid-cols-[1fr_auto] md:items-end">
@@ -31,7 +29,6 @@ const Hero = () => {
           </h1>
 
           <p className="mt-6 md:mt-8 text-subhead max-w-[54ch] text-foreground/90">
-            <span className="font-serif italic text-muted-foreground">—&nbsp;</span>
             Frontend engineer building considered web interfaces at{" "}
             <Link
               href="https://buguard.io"
@@ -52,7 +49,7 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* Editorial byline portrait — small, offset, NOT a round avatar */}
+        {/* Editorial byline portrait: small, offset, deliberately not a round avatar. */}
         <figure className="md:w-[168px] md:self-end shrink-0">
           <div className="relative w-[120px] md:w-[168px] aspect-[4/5] overflow-hidden">
             <Image
@@ -64,9 +61,6 @@ const Hero = () => {
               priority
             />
           </div>
-          <figcaption className="label-eyebrow mt-3">
-            Fig. 01 — Portrait
-          </figcaption>
         </figure>
       </div>
     </section>
