@@ -12,7 +12,7 @@ const Hero = () => {
       {/* Running head. The locality/timezone strip that used to sit opposite
           was decoration, so the label now carries the row alone. */}
       <div className="flex items-baseline gap-6 mb-10 md:mb-14">
-        <span className="label-eyebrow">§ 00 / Masthead</span>
+        <span className="label-eyebrow hero-rise">§ 00 / Masthead</span>
       </div>
 
       <div className="grid gap-10 md:gap-12 md:grid-cols-[1fr_auto] md:items-end">
@@ -20,7 +20,7 @@ const Hero = () => {
         <div className="flex flex-col">
           <h1
             id="masthead"
-            className="text-display font-serif"
+            className="text-display font-serif hero-rise"
             style={{ fontWeight: 500 }}
           >
             Ahmed
@@ -28,7 +28,7 @@ const Hero = () => {
             Samy<span className="text-accent">.</span>
           </h1>
 
-          <p className="mt-6 md:mt-8 text-subhead max-w-[54ch] text-foreground/90">
+          <p className="mt-6 md:mt-8 text-subhead max-w-[54ch] text-foreground/90 hero-rise hero-rise-1">
             Frontend engineer building considered web interfaces at{" "}
             <Link
               href="https://buguard.io"
@@ -42,7 +42,7 @@ const Hero = () => {
             class of 2024.
           </p>
 
-          <p className="mt-4 text-small text-muted-foreground max-w-[58ch]">
+          <p className="mt-4 text-small text-muted-foreground max-w-[58ch] hero-rise hero-rise-2">
             I care about typography, motion that serves meaning, and shipping
             things that feel considered. Currently open to selective
             collaborations.
@@ -50,7 +50,7 @@ const Hero = () => {
         </div>
 
         {/* Editorial byline portrait: small, offset, deliberately not a round avatar. */}
-        <figure className="md:w-[168px] md:self-end shrink-0">
+        <figure className="md:w-[168px] md:self-end shrink-0 hero-rise hero-rise-3">
           <div className="relative w-[120px] md:w-[168px] aspect-[4/5] overflow-hidden">
             <Image
               src={me}

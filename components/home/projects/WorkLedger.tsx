@@ -115,7 +115,7 @@ const WorkLedger = ({ entries }: { entries: Entry[] }) => {
                 <Plus
                   size={14}
                   aria-hidden
-                  className="justify-self-end text-subtle-foreground transition-transform duration-250 group-open:rotate-45"
+                  className="justify-self-end text-subtle-foreground transition-transform duration-260 ease-[var(--ease-out)] group-open:rotate-45"
                 />
               </summary>
 

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 
 const navItems = [
@@ -13,6 +13,7 @@ const navItems = [
 const StickyHeader = () => {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8);
@@ -67,11 +68,11 @@ const StickyHeader = () => {
                         layoutId="nav-active"
                         aria-hidden
                         className="absolute left-3 right-3 -bottom-[1px] h-px bg-foreground"
-                        transition={{
-                          type: "spring",
-                          stiffness: 520,
-                          damping: 40,
-                        }}
+                        transition={
+                          reduceMotion
+                            ? { duration: 0 }
+                            : { type: "spring", stiffness: 520, damping: 40 }
+                        }
                       />
                     )}
                   </Link>
