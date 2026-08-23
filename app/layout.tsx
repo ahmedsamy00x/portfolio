@@ -1,30 +1,32 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Geist, Geist_Mono } from "next/font/google";
+import { DM_Mono, Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import StickyHeader from "@/components/StickyHeader";
-import Footer from "@/components/Footer";
 
-// Variable cut: dropping the fixed weight list keeps the full wght range, and
-// requesting opsz lets the masthead use Bodoni's display drawing rather than a
-// text-size cut scaled up to 96px.
-const bodoniModa = Bodoni_Moda({
-  variable: "--font-bodoni",
+// Variable cut. Dropping the weight list keeps the full 100..900 wght range;
+// requesting opsz lets the masthead use Fraunces' display drawing instead of a
+// text cut scaled to 96px. SOFT and WONK are the axes that carry the warmth —
+// globals.css drives them through --serif-variation.
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
+  axes: ["opsz", "SOFT", "WONK"],
   display: "swap",
 });
 
-const geist = Geist({
-  variable: "--font-geist",
+// Variable cut: full 200..800 wght range. Manrope has no italic, and nothing in
+// the app asks for one — the two italics on the site are both set in Fraunces.
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Not a variable font: 300/400/500 only. The eyebrow labels ask for 500.
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
   display: "swap",
@@ -87,7 +89,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${bodoniModa.variable} ${geist.variable} ${geistMono.variable}`}
+      className={`${fraunces.variable} ${manrope.variable} ${dmMono.variable}`}
     >
       <body className="antialiased">
         <script
@@ -104,7 +106,6 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col bg-background text-foreground">
             <StickyHeader />
             <main className="flex-1">{children}</main>
-            <Footer />
           </div>
         </ThemeProvider>
       </body>

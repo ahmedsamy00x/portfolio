@@ -20,10 +20,13 @@ export default async function OpengraphImage() {
   // every family used below has to be registered. All three are OFL licensed.
   const font = (file: string) =>
     readFile(join(process.cwd(), "app/_fonts", file));
-  const [bodoni, geist, geistMono] = await Promise.all([
-    font("BodoniModa-Display600.ttf"),
-    font("Geist-Regular.ttf"),
-    font("GeistMono-Medium.ttf"),
+  // Fraunces and Manrope are variable upstream; these are static instances
+  // pinned with fontTools (Fraunces at wght 500 / opsz 120 / SOFT 30 / WONK 1,
+  // matching --serif-variation in globals.css). Satori cannot resolve axes.
+  const [fraunces, manrope, dmMono] = await Promise.all([
+    font("Fraunces-Display500.ttf"),
+    font("Manrope-Regular.ttf"),
+    font("DMMono-Medium.ttf"),
   ]);
 
   return new ImageResponse(
@@ -37,16 +40,16 @@ export default async function OpengraphImage() {
           justifyContent: "space-between",
           background: INK,
           padding: "72px 80px",
-          fontFamily: "Geist",
+          fontFamily: "Manrope",
         }}
       >
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            fontFamily: "GeistMono",
+            fontFamily: "DMMono",
             fontSize: 20,
-            letterSpacing: "0.16em",
+            letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: SUBTLE,
           }}
@@ -59,10 +62,10 @@ export default async function OpengraphImage() {
           <div
             style={{
               display: "flex",
-              fontFamily: "Bodoni",
-              fontSize: 150,
+              fontFamily: "Fraunces",
+              fontSize: 176,
               lineHeight: 1,
-              letterSpacing: "-0.035em",
+              letterSpacing: "-0.026em",
               color: PAPER,
             }}
           >
@@ -89,9 +92,9 @@ export default async function OpengraphImage() {
     {
       ...size,
       fonts: [
-        { name: "Bodoni", data: bodoni, style: "normal", weight: 600 as const },
-        { name: "Geist", data: geist, style: "normal", weight: 400 as const },
-        { name: "GeistMono", data: geistMono, style: "normal", weight: 500 as const },
+        { name: "Fraunces", data: fraunces, style: "normal", weight: 500 as const },
+        { name: "Manrope", data: manrope, style: "normal", weight: 400 as const },
+        { name: "DMMono", data: dmMono, style: "normal", weight: 500 as const },
       ],
     }
   );
