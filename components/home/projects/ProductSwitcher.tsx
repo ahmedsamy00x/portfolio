@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
 import { ArrowUpRight } from "@phosphor-icons/react";
+import { motion, useReducedMotion } from "motion/react";
 import type { projects } from "@/data";
 
 type Product = NonNullable<(typeof projects)[number]["products"]>[number];
@@ -20,6 +21,7 @@ const ProductSwitcher = ({ products }: { products: Product[] }) => {
   const [active, setActive] = useState(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const current = products[active];
+  const reduceMotion = useReducedMotion();
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     const last = products.length - 1;
@@ -56,7 +58,7 @@ const ProductSwitcher = ({ products }: { products: Product[] }) => {
             fill
             sizes="(min-width: 1024px) 700px, 100vw"
             priority={i === 0}
-            className={`object-cover object-top transition-opacity duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+            className={`object-cover object-top transition-opacity duration-300 ease-[var(--ease-out)] motion-reduce:transition-none ${
               i === active ? "opacity-100" : "opacity-0"
             }`}
           />
@@ -87,13 +89,25 @@ const ProductSwitcher = ({ products }: { products: Product[] }) => {
               tabIndex={i === active ? 0 : -1}
               onClick={() => setActive(i)}
               onFocus={() => setActive(i)}
-              className={`label-eyebrow px-2.5 py-2.5 -mb-px border-b transition-colors duration-200 ${
+              className={`relative label-eyebrow px-2.5 py-2.5 -mb-px border-b border-transparent transition-colors duration-200 ${
                 i === active
-                  ? "text-foreground border-accent"
-                  : "text-subtle-foreground border-transparent hover:text-foreground"
+                  ? "text-foreground"
+                  : "text-subtle-foreground hover:text-foreground"
               }`}
             >
               {p.code}
+              {i === active && (
+                <motion.span
+                  layoutId="product-tab-indicator"
+                  aria-hidden
+                  className="absolute inset-x-0 -bottom-px h-px bg-accent"
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : { type: "spring", stiffness: 520, damping: 40 }
+                  }
+                />
+              )}
             </button>
           </React.Fragment>
         ))}

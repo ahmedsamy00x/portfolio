@@ -81,6 +81,9 @@
   --space-128: 8rem;
 
   --radius: 0.25rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .dark {
@@ -195,6 +198,34 @@
     font-weight: 500;
     letter-spacing: -0.015em;
   }
+
+  /* Lets block-size animate to and from `auto`, which is what makes the
+     <details> rows in Selected Work open without teleporting. Chromium ships
+     ::details-content; engines that don't simply open instantly, which is the
+     correct degradation for a no-JavaScript accordion. */
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  details::details-content {
+    block-size: 0;
+    /* Clip the block axis only: that is the axis the height animation
+       overflows. A blanket `overflow: clip` would also shave the left 3px off
+       the focus rings on links inside an open row (:focus-visible carries
+       outline-offset: 3px). visible/clip is the one legal pairing. */
+    overflow-x: visible;
+    overflow-y: clip;
+    opacity: 0;
+    transition:
+      content-visibility 260ms allow-discrete,
+      block-size 260ms var(--ease-out),
+      opacity 180ms var(--ease-out);
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
 }
 
 @layer utilities {
@@ -258,8 +289,8 @@
     background-repeat: no-repeat;
     background-size: 0% 1px;
     transition:
-      background-size 320ms cubic-bezier(0.22, 1, 0.36, 1),
-      color 200ms cubic-bezier(0.22, 1, 0.36, 1);
+      background-size 320ms var(--ease-out),
+      color 200ms var(--ease-out);
     padding-bottom: 1px;
   }
   .link-underline:hover,
@@ -279,6 +310,59 @@
   .link-solid:hover {
     color: var(--accent);
     text-decoration-color: var(--accent);
+  }
+
+  /* Masthead entrance. This is the only entrance animation on the site: it is a
+     once-per-visit, first-impression moment, which is the one tier where
+     decorative motion is worth its cost. `backwards` is load-bearing — without
+     it the delayed elements paint at full opacity before snapping to 0. */
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+
+  .hero-rise {
+    animation: hero-rise 520ms var(--ease-out) backwards;
+  }
+  .hero-rise-1 { animation-delay: 70ms; }
+  .hero-rise-2 { animation-delay: 140ms; }
+  .hero-rise-3 { animation-delay: 210ms; }
+
+  /* The global reduce rule below only shortens animation-duration; it does not
+     reset animation-delay, which combined with `backwards` would leave the
+     portrait invisible for 210ms and then pop it in. For a pure entrance the
+     correct reduced-motion handling is simply: the content is already there. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-rise { animation: none; }
+  }
+
+  /* The section hairline draws itself as the section enters. Scrubbed to scroll
+     position, so `linear` is correct — the rule tracks the scroll 1:1 rather
+     than easing independently of it. Decorative and aria-hidden: it never gates
+     the section's content. Longhands, not the `animation` shorthand, which
+     would reset animation-timeline and animation-duration.
+
+     The reduce gate is explicit because animation-duration — all the global
+     rule below sets — is ignored for view-timeline animations. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes rule-draw {
+        from { transform: scaleX(0); }
+        to   { transform: scaleX(1); }
+      }
+
+      .section-rule {
+        transform-origin: left center;
+        animation-name: rule-draw;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-duration: auto;
+        animation-timeline: view();
+        animation-range: entry 15% entry 70%;
+      }
+    }
   }
 }
 

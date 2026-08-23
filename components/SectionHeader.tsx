@@ -19,7 +19,7 @@ const SectionHeader = ({ index, title, meta }: Props) => {
       </div>
       <div
         aria-hidden
-        className="mt-3 h-px w-full bg-[color:var(--border)]"
+        className="section-rule mt-3 h-px w-full bg-[color:var(--border)]"
       />
     </header>
   );
