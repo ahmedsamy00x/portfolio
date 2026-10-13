@@ -211,6 +211,26 @@ const projects: Project[] = [
     ],
   },
   {
+    title: "Code Bel Araby",
+    summary:
+      "Arabic-first learning platform for high-school programming. Courses, an in-browser Python playground, and enrollment.",
+    description:
+      "An Arabic-first (RTL) platform that teaches programming and AI to Egyptian high-school students, with an English toggle and a dark theme. A course catalog covers the three secondary years plus a foundation track, each with a monthly subscription, live and recorded sessions, and a sign-up flow. The in-browser Python playground runs real code through Pyodide behind a CodeMirror editor, so a student can write and run their first program without installing anything. The rest of the surface is marketing and conversion: testimonials, an FAQ, local payment methods, and a contact form.",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Pyodide",
+      "CodeMirror",
+    ],
+    image: "/work-codeblaraby.webp",
+    imageAlt:
+      "The Code Bel Araby home page: the Arabic hero with a student and robot illustration, the sign-up call to action, and a five-step level track from first-time student to hired developer.",
+    previewLink: "https://codeblaraby-frontend.vercel.app/",
+    repoLink: "",
+  },
+  {
     title: "Nagah Furniture",
     summary:
       "Full-stack multilingual storefront. Arabic and English, cart and auth, Postgres and Prisma.",

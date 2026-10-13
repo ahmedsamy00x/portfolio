@@ -18,11 +18,7 @@ const Hero = () => {
       <div className="grid gap-10 md:gap-12 md:grid-cols-[1fr_auto] md:items-end">
         {/* Masthead */}
         <div className="flex flex-col">
-          <h1
-            id="masthead"
-            className="text-display font-serif hero-rise"
-            style={{ fontWeight: 500 }}
-          >
+          <h1 id="masthead" className="text-display font-serif hero-rise">
             Ahmed
             <br />
             Samy<span className="text-accent">.</span>

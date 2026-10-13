@@ -44,9 +44,14 @@
   --input: var(--border);
 
   /* Typography tokens */
-  --font-serif: var(--font-bodoni);
-  --font-body: var(--font-geist);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-fraunces);
+  --font-body: var(--font-manrope);
+  --font-mono: var(--font-dm-mono);
+
+  /* Fraunces' warmth axes. SOFT rounds the terminals, WONK swaps in the
+     flared alternates. Both are the reason this face was chosen — turn WONK
+     to 0 for a soberer masthead without changing anything else. */
+  --serif-variation: "SOFT" 30, "WONK" 1;
 
   /* Modular type scale, fluid on display sizes, fixed on body */
   --fs-display:   clamp(3.2rem, 2.2rem + 4.5vw, 6rem);
@@ -152,9 +157,9 @@
   /* Point at the next/font source variables, not at the :root aliases above.
      Self-referencing these (--font-serif: var(--font-serif)) makes them
      resolve to nothing and every face silently falls back to system sans. */
-  --font-sans: var(--font-geist);
-  --font-serif: var(--font-bodoni);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-fraunces);
+  --font-mono: var(--font-dm-mono);
 
   --radius-sm: calc(var(--radius));
   --radius-md: calc(var(--radius) + 2px);
@@ -177,7 +182,6 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-    font-feature-settings: "ss01", "cv11";
     font-size: var(--fs-body);
     line-height: var(--lh-body);
   }
@@ -195,8 +199,9 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-serif), ui-serif, Georgia, serif;
+    font-variation-settings: var(--serif-variation);
     font-weight: 500;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.012em;
   }
 
   /* Lets block-size animate to and from `auto`, which is what makes the
@@ -245,13 +250,16 @@
     .container-page { padding-inline: 3.5rem; }
   }
 
-  .font-serif  { font-family: var(--font-serif), ui-serif, Georgia, serif; }
+  .font-serif  { font-family: var(--font-serif), ui-serif, Georgia, serif; font-variation-settings: var(--serif-variation); }
   .font-body   { font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif; }
   .font-mono   { font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace; }
 
-  .text-display { font-family: var(--font-serif); font-size: var(--fs-display); line-height: var(--lh-display); letter-spacing: -0.035em; }
-  .text-title   { font-family: var(--font-serif); font-size: var(--fs-title);   line-height: var(--lh-title);   letter-spacing: -0.025em; }
-  .text-heading { font-family: var(--font-serif); font-size: var(--fs-heading); line-height: var(--lh-heading); letter-spacing: -0.018em; }
+  /* opsz is left to `font-optical-sizing: auto` so each size gets the right
+     drawing; only SOFT and WONK are pinned. Tracking sits between the Didone
+     it replaced and a text serif — Fraunces sets tighter than it looks. */
+  .text-display { font-family: var(--font-serif); font-variation-settings: var(--serif-variation); font-size: var(--fs-display); line-height: var(--lh-display); letter-spacing: -0.026em; }
+  .text-title   { font-family: var(--font-serif); font-variation-settings: var(--serif-variation); font-size: var(--fs-title);   line-height: var(--lh-title);   letter-spacing: -0.018em; }
+  .text-heading { font-family: var(--font-serif); font-variation-settings: var(--serif-variation); font-size: var(--fs-heading); line-height: var(--lh-heading); letter-spacing: -0.012em; }
   .text-subhead { font-size: var(--fs-subhead); line-height: 1.45; }
   .text-small   { font-size: var(--fs-small);   line-height: 1.55; }
   .text-caption { font-size: var(--fs-caption); line-height: var(--lh-caption); }
@@ -260,17 +268,19 @@
   .label-eyebrow {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    letter-spacing: 0.13em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--subtle-foreground);
     font-weight: 500;
   }
 
-  /* Numbered index figure: "01", "02" in display serif */
+  /* Numbered index figure: "01", "02" in display serif. Fraunces' Google
+     subset exposes no figure features at all (kern/liga/rvrn only, verified
+     against the font binary), so there is nothing to opt into here — these are
+     the family's default figures. */
   .numeral {
     font-family: var(--font-serif);
-    font-variant-numeric: oldstyle-nums;
-    font-feature-settings: "onum";
+    font-variation-settings: var(--serif-variation);
   }
 
   /* Tabular figures for date/year metadata */
